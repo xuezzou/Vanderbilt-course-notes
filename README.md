@@ -1,16 +1,16 @@
 ## Data Structure and Program Design
 
-> CS 2201, taught by ***Dr. Jerry Roth***<br></br>
-> Vanderbilt University – 2017 Fall<br></br>
-> Transcribed by ***Xue Zou***<br></br>
+> CS 2201, taught by ***Dr. Jerry Roth***
+> Vanderbilt University – 2017 Fall
+> Transcribed by ***Xue Zou***
 
 > Recommended textbooks:
-> 1) *Data Abstraction & Problem Solving with C++: Walls and Mirrors, 7th Edition* 2017. </br>
-> 2) *C++ Primer Plus (Developer’s Library), 6th Edition* 2011. <br/>
+> 1) *Data Abstraction & Problem Solving with C++: Walls and Mirrors, 7th Edition* 2017. 
+> 2) *C++ Primer Plus (Developer’s Library), 6th Edition* 2011. 
 
 ### Table of Contents
 
-- [Recursion: By and Conquer](#recursion:-by-and-conquer)
+- [Recursion By and Conquer](#recursion-by-and-conquer)
 - [QuickSort](#quicksort)
 - [Stack](#stack)
 - [Post-fix Expression](#post-fix-expression)
@@ -25,7 +25,7 @@
 
 ---
 
-### Recursion: By and Conquer
+### Recursion By and Conquer
 
 - Recursion is well suited for solving problems by a **divide-n-conquer** solution 
 - divide-n-conquer has 3 steps:
@@ -220,8 +220,8 @@
          } // ignore all other chars
     } // end while loop
     ```
-        - stk is empty? throw an exception
-        - at the end of the pgm, stk should be empty
+    - stk is empty? throw an exception
+    - at the end of the pgm, stk should be empty
     ```c++
     // more complete solution 
     bool balanced(true);
@@ -307,9 +307,9 @@
         - also fast except when we need to grow during a push()
     - use a linked list
         - top of stack is the beginning of the list
-    ```c++
-    Stack::Stack():myTop(nullptr), mySize(0){}
-    ```
+        ```c++
+        Stack::Stack():myTop(nullptr), mySize(0){}
+        ```
         - all operations are still O(1)
             - but new/delete operations are a bit expensive
             - if know DEFAULT_SIZE, use static array or linked list also works well
@@ -769,7 +769,7 @@
 
 - Is it possible to have a linked structure and search it in a binary function?
 - let's consider again the binary search of an array
-     - this is known as a binary Search Tree
+    - this is known as a binary Search Tree
 <br><br/>
 - **Tree Structure**
 - a tree consists of nodes/vertices and directed edges between nodes
@@ -1065,15 +1065,15 @@
                     - this will always maintain the BST property
             3. has two children
                 - we'll find the successor of the node be deleted, the successor is node that would follow it in sorted order, and swap data in these two nodes. Then delete data from its new position (will always be via case1 & 2)
-    ```c++
-     void BST<...>::remove(const ...)
-    ```
+        ```c++
+         void BST<...>::remove(const ...)
+        ```
         - e.g. 10(5 20(15 30(25(24(22(# 23) #) #) 40)))
             - 20 to be deleted, swap 20 and 22
         - How do we find successor?
             - go to right subtree and follow left links until no more links (at most one right child, never have left child)
                 - will have at most a right child
-
+<br><br/>
 - The shape of binary trees
     - let's create a BST w/ 30, 10, 40, 5, 45, 35, 20 (level order)
         - this tree has O(lgn) time
