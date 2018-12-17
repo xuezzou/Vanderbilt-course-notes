@@ -114,14 +114,14 @@
         - reduce reflow
         - control when page is repainted
     - [Why reflow and Repaint is bad](http://www.thatjsdude.com/interview/dom.html)
-    <img src="Flow-Chart.png" width="66%">
+    <img src="illustration/Flow-Chart.png" width="66%">
 - Shadow DOM: *Creation of React*
     - React was the first view library to strongly embrace the Shadow DOM for performance improvement (min set of changes)
     - maintain 2nd DOM (el Shadow DOM) 
     - make changes to Shadow DOM first
     - When ready to redraw page, diff Shadow DOM and actual DOM
     - make aonly necessary changes to primrary DOM
-    <img src="Shadow-DOM.png" width="66%">
+    <img src="illustration/Shadow-DOM.png" width="66%">
 
 - React Basics
     - Component Lifecycle
@@ -524,7 +524,7 @@
     - JS to build DOM is tedious
     - doing everything client-side can slow down response to the user
 - Templates for Generation
-    - <img src="templateServer.png" width="66%">
+    - <img src="illustration/templateServer.png" width="66%">
 - ExpressJS and Jade
     - One of the most popular template language sis Pug. Simple to install into ExpressJS pipeline and adapt your pat handlers to leverage it.
     ```javascript
@@ -563,7 +563,7 @@
     - Columnar/tabular (HBase)
     - Document (mongoDB)
     - [MongoDB vs. SQL Server](http://www.aaronstannard.com/mongodb-vs-sql-server/)
-    <img src="SQL.png" width="33%">
+    <img src="illustration/SQL.png" width="33%">
 - Motivations
     - Problems with SQL 
         + Rigid Schema
@@ -787,7 +787,7 @@
 
 - Schemas - Guess We Still Need Them
     - We need schemas consistency. But it will not be the MongoDB server that implements them
-    <img src="mongoDBschemas.png" width="33%">
+    <img src="illustration/mongoDBschemas.png" width="33%">
 - Mongoose Schemas
     - define and enforce schemas, but in the NodeJS process - not the DB server. Mongoose makes that easy and flexible.
         - type: String Number Date Buffer Bollean Mixed ObjectID Array
@@ -1050,10 +1050,10 @@
     + client <- _Provides Resource_ - Application
 
 - **Basic auth** is a very simple protocol built directly into every browser. Header fields are used to communicate all authentication info
-    - <img src="basic-auth.png" width="66%">
+    - <img src="illustration/basic-auth.png" width="66%">
     - (All of the client-server communication in Basic Auth is done in "plain" text. Therefore, we MUST have HTTPS (here the authorization is essencially authentication))
     - Browser handles some on the client, and the framework handles these on the server
-    - <img src="basic-auth2.png" width="66%">
+    - <img src="illustration/basic-auth2.png" width="66%">
     - RULE never sending password plaintext
     - our app didn't have the encrption yet
     ```javascript
@@ -1084,8 +1084,8 @@
 - HTTP Digest Auth
     - Digest Authentication is also built into most browsers. Similar to Basic, it uses Header fields to communication credentials.
     - [What is Digest authentication](https://stackoverflow.com/questions/2384230/what-is-digest-authentication)
-    - <img src="digest-auth1.png" width="66%"/>
-    - <img src="digest-auth2.png" width="66%" />
+    - <img src="illustration/digest-auth1.png" width="66%"/>
+    - <img src="illustration/digest-auth2.png" width="66%" />
     - 
         - `qop`, `nonce` (The server gives the client a one-time use number (a nonce) that it combines with the username, realm, password and the URI request. The c
         - lient runs all of those fields through an MD5 hashing method to produce a hash key), `opaque`
@@ -1153,7 +1153,7 @@
     - Last, 302 to complete login and client pass the second token
     - (second token validate the processing, and complete the login)
     - (Process depends on the trust between parties)
-    - <img src="simpleScheme.png" width ="66%">
+    - <img src="illustration/simpleScheme.png" width ="66%">
 - VUNetID
     - vulink app, redirect back (using lib based on XML)
     - SAML Protocol (industry commercial standard)
