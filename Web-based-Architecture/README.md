@@ -20,6 +20,7 @@
 - [More REST](#More-rest)
 - [HTTP Authentication](#Http-authentication)
 - [More Authentication](#more-authentication)
+- [Intro to Redis](#intro-to-redis)
 
 
 ---
@@ -95,7 +96,7 @@
 
 - View Layer
     - Template, Rendering, Events
-    - An SPA framework may provide several layers for our client-side SPA: routing, evenrs, data and views
+    - An SPA framework may provide several layers for our client-side SPA: routing, events, data and views
 - **React** is an open-source *Facebook* project that concentrates on the view layer. It aims to enable rapid development of high-performance views
     - integrate view logic and template
     - speed up DOM changes
@@ -113,14 +114,14 @@
         - reduce reflow
         - control when page is repainted
     - [Why reflow and Repaint is bad](http://www.thatjsdude.com/interview/dom.html)
-    <img src="flow-chart.png" width="66%">
+    <img src="Flow-Chart.png" width="66%">
 - Shadow DOM: *Creation of React*
     - React was the first view library to strongly embrace the Shadow DOM for performance improvement (min set of changes)
     - maintain 2nd DOM (el Shadow DOM) 
     - make changes to Shadow DOM first
     - When ready to redraw page, diff Shadow DOM and actual DOM
     - make aonly necessary changes to primrary DOM
-    <img src="Shadow-dom.png" width="66%">
+    <img src="Shadow-DOM.png" width="66%">
 
 - React Basics
     - Component Lifecycle
@@ -499,7 +500,7 @@
 - The Router
     - a built-in router, can create more routers
     ```javascript
-    app.get(‘/', (req, res) => { // GET VERB being used by client
+    app.get('/', (req, res) => { // GET VERB being used by client
         res.send('hello world');
     });
     let router = express.Router();
@@ -509,17 +510,12 @@
         let from = req.params[0];
         let to = req.params[1] || 'HEAD';
         res.send('commit range ' + from + '..' + to);
-    });```
+    });
+    ```
 - More Complex 
     - mult router in different order (instead of pipeline all running)
-
-app.post()
-
-router is more dynamic!
-
-url some pattern matching
-
-
+    - router is more dynamic
+    - app.post()... url hhas some pattern matching
 
 #### Templates on the Server
 - Simplifying HTML Gerneration
@@ -528,7 +524,7 @@ url some pattern matching
     - JS to build DOM is tedious
     - doing everything client-side can slow down response to the user
 - Templates for Generation
-    - <img src="templateserver.png" width="66%">
+    - <img src="templateServer.png" width="66%">
 - ExpressJS and Jade
     - One of the most popular template language sis Pug. Simple to install into ExpressJS pipeline and adapt your pat handlers to leverage it.
     ```javascript
@@ -616,7 +612,7 @@ url some pattern matching
 - mongoDB vs. SQL
 
     | mongoDB                   | SQL 
-    |:-------------------------:| --- 
+    |:-------------------------:| ---
     | Document                  | Tuple 
     | Collection                | centered 
     | PK:_id Field              | PK: Any Attribute(s)
@@ -797,7 +793,7 @@ url some pattern matching
         - type: String Number Date Buffer Bollean Mixed ObjectID Array
     ```javascript
      let User = new Schema({
-        ‘username': { type: String, required: true, index: { unique: true } },
+        'username': { type: String, required: true, index: { unique: true } },
         'hash':     { type: String, required: true },
         'salt':     { type: String, required: true },
     }); // never save password as plaintext, hashing not reversible
@@ -1091,7 +1087,9 @@ url some pattern matching
     - [What is Digest authentication](https://stackoverflow.com/questions/2384230/what-is-digest-authentication)
     - <img src="digest-auth1.png" width="66%"/>
     - <img src="digest-auth2.png" width="66%" />
-        - `qop`, `nonce` (The server gives the client a one-time use number (a nonce) that it combines with the username, realm, password and the URI request. The client runs all of those fields through an MD5 hashing method to produce a hash key), `opaque`
+    - 
+        - `qop`, `nonce` (The server gives the client a one-time use number (a nonce) that it combines with the username, realm, password and the URI request. The c
+        - lient runs all of those fields through an MD5 hashing method to produce a hash key), `opaque`
         - using md5 hashing, reponse with `cnounce`
 
 - Custom Authentication
@@ -1166,3 +1164,65 @@ url some pattern matching
     - send back large doc, as we can mine out the user
 - OAuth does nothing, purely for authentication, SAML protocal pass back documentation, if successful never talk to SSO provider again (since it send back info) but code more complex
 
+
+#### Intro to Redis
+- why cache
+    - Many times users will read the same data many many times *before it must be changed*. Imagine Facebook... (user profile, user post, user photos)
+    - data should get "cached" when it will be read frequenrly and without changes. This acclerates our app's content delievery
+- What can we cache
+    - Even our simple Game application could make good use of caching
+    - Recently played games, user statistics, user profiles
+- flow
+    - client -(1st request)-> Web Server -> Redis Server -> (Mongo Server -> Web Server -> Redis Server)
+    - client -(2nd Request)-> Web Server -> Redis Server -(data)-> web server (cut mongo out)
+- **Redis**
+    - Radis is a modern caching server. Written mostly by [Salvatore Sanfilippo](https://github.com/antirez/redis), it is now the default solution for this type of problem
+    - low const & low compleixty
+    - `redis-cli -p (portnumber from kitematic)` `get` `set`
+    - redis: **rate-limiting** (use a ratecounting)
+- Many different data structure
+    - (use one line in the server to save the session info to redis)
+
+#### HTTPS
+- Let's Be Safe
+    - HTTP unsecure -> HTTPS
+        - Fully encrpts all traffic
+        - Initiation costs cycles (load balancers)
+        - Generally need to purchase from a CA (certificate from a third party)
+        - Need to stay up to date
+- Setting up
+    - modify
+    ```javascript
+    let server = app.listen(8080,  function() {
+        console.log('Example app listeing on' + server.address. port);
+    })
+
+    let server = https.createServer(options, app).listen(8443, function(){
+        console.log('Example app listening on ' + server.address.port);
+    })
+    ``` 
+- Certificate Gerneration
+    - Usaully we rely upon Certificate Authorities to generate our certificates. Self-signed certificates are frequently used interally or for development & testing.
+    - Chain of trust
+        - [CAs provide a trusted chain of security](http://w3techs.com/technologies/overview/ssl_certificate/all)
+        - Root certificates are pre-installed in browsers
+        - Generate a certificate request
+        - CA generates actual certificate
+    - (owned the domain and actually is the owner)
+- Generate CSR      
+    - ownership of private key
+    - A Certificate Signing Request initiates the certificate generation process.
+    - Generate private key
+    `openssl genrsa -des3 -out server.pass.key 2048`
+    - Strip off password
+    `openssl req -new -key server.key -out server.csr`
+    - Generate CSR
+    `openssl req -new -key server.key -out server.csr`
+        - `Common Name` matters, e.g. localhost
+    - generate server.csr using the csr
+    could only use csr when one has the private key
+    - send csr to the vender and send the cert back get `cerver.crt`    
+- can use `certbot` connect to `Let s Encrypt`
+- running certbot on the virtual machine after purchasing the domain name
+`ls -al ~/.ssh/`
+129.59 change the source to that so only Vandy student can come
