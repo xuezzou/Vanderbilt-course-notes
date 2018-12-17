@@ -252,7 +252,7 @@
             case "/index.html":
                 render(<Landing/>, document.getElementById(“mainDiv”));
                 break;
-            case “/profile.html":
+            case "/profile.html":
                 ...
                 break;
         }
@@ -348,8 +348,8 @@
 - Conditionalize render for Ajax
     ```javascript
     render() {
-        return this.state.loaded ? <NamesList list={this.state.names}/> :<div>Loading...</div>;
- }
+        return this.state.loaded ? <NamesList list={this.state.names}/> : <div>Loading...</div>;
+    }
     ```
 
 ---
@@ -838,11 +838,11 @@
             validate: {
                 validator: function(v) {
                     return /d{3}-d{3}-d{4}/.test(v);
-            },
+                },
             message: '{VALUE} is not a valid phone number!'
+            }
         }
-    }
-});
+    });
     ```
     ```javascript
     User.pre('save', function(next) {
@@ -852,7 +852,6 @@
         next(); // next() is defined by Mongoose
     });
     ```
-
 
 #### Sessions
 - Starting to save state in the **server**
@@ -1054,11 +1053,12 @@
     - <img src="basic-auth.png" width="66%">
     - (All of the client-server communication in Basic Auth is done in "plain" text. Therefore, we MUST have HTTPS (here the authorization is essencially authentication))
     - Browser handles some on the client, and the framework handles these on the server
-    - <img src="basic-auth2.png width="66%">
+    - <img src="basic-auth2.png" width="66%">
     - RULE never sending password plaintext
     - our app didn't have the encrption yet
     ```javascript
     let basicAuth = require('basic-auth');
+
     let auth = (req, res, next) => {
         const unauthorized = res => {
             res.set('WWW-Authenticate', 'Basic realm=foo');
@@ -1073,14 +1073,13 @@
         } else {
             return unauthorized(res);
         }; 
-};
+    };
     ```
     ```javascript
     app.get('/', auth, (req,res) => {
         res.send(200, 'Authenticated');
     })
     ```
-
 
 - HTTP Digest Auth
     - Digest Authentication is also built into most browsers. Similar to Basic, it uses Header fields to communication credentials.
