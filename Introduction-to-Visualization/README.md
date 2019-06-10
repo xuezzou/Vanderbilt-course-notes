@@ -189,7 +189,7 @@
 
 ---
 
-### Final Reiview
+### Final Review
 
 #### Interaction
 
@@ -644,13 +644,18 @@
     - Turbulent flow: https://prnt.sc/lsjbkc
 - Pathlines, Timelines, Streaklines and Streamlines:
     - We need to consider these for time-varying vector field.
-    - **Pathlines**: are the trajectories that individual fluid particles follow. These can be thought of as "recording" the path of a fluid element in the flow over a certain period. The direction the path takes will be determined by the streamlines of the fluid at each moment in time.
-    - **Streamlines**: are a family of curves that are instantaneously tangent to the velocity vector of the flow. These show the direction in which a massless fluid element will travel at any point in time.
-    - **Timelines**: are the lines formed by a set of fluid particles that were marked at a previous instant in time, creating a line or a curve that is displaced in time as the particles move. 
-    Diagram: https://prnt.sc/lsjdtw
-    - **Streaklines**: Fix a point at a specific position. Look at all the integral curves that pass through there. Make sure all curves have the same ending time step. Form a curve that connects all of the points.
-    Diagram: https://prnt.sc/lsjf4g
-    - **Pathlines** may intersect, means a clutter of particles at some specific time. Streamlines never intersect, because that means some point in the vector field has more than one velocity vector (not possible).
+    - **Pathlines**:
+        - are the trajectories that individual fluid particles follow. These can be thought of as "recording" the path of a fluid element in the flow over a certain period. The direction the path takes will be determined by the streamlines of the fluid at each moment in time.
+    - **Streamlines**: 
+        - are a family of curves that are instantaneously tangent to the velocity vector of the flow. These show the direction in which a massless fluid element will travel at any point in time.
+    - **Timelines**: 
+        - are the lines formed by a set of fluid particles that were marked at a previous instant in time, creating a line or a curve that is displaced in time as the particles move. 
+        - [Diagram](https://prnt.sc/lsjdtw)
+    - **Streaklines**: 
+        - Fix a point at a specific position. Look at all the integral curves that pass through there. Make sure all curves have the same ending time step. Form a curve that connects all of the points.
+        - [Diagram](https://prnt.sc/lsjf4g)
+    - **Pathlines** 
+        - may intersect, means a clutter of particles at some specific time. Streamlines never intersect, because that means some point in the vector field has more than one velocity vector (not possible).
 - Finite-Time Lyapunov Exponent (FTLE)
     - [example](http://shaddenlab.berkeley.edu/uploads/LCS-tutorial/FTLE-interp.html)
     - Given a set of points close to each other, after a series of time steps, how far is their **separation**?

@@ -1,6 +1,7 @@
 
 ### Web-based Architecture Course Notes
 > Taught by Professor *Graham Hemingway*, Vanderbilt University Fall 2019
+> 
 > Transcribed by *Xue Zou*
 
 #### Contents
