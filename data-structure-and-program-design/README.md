@@ -10,7 +10,7 @@
 
 ### Table of Contents
 
-- [First Exam](CS2201_notes_Xue_1.pdf)
+- [First Exam (handwritten)](CS2201_notes_Xue_1.pdf)
 - [Recursion By and Conquer](#recursion-by-and-conquer)
 - [QuickSort](#quicksort)
 - [Stack](#stack)
@@ -18,11 +18,11 @@
 - [Queue](#queue)
 - [C++ standard Template Library](#c++-standard-template-library)
 - [Template](#template)
-- [Smart Pointers & Searching](#smart-pointers-&-searching)
+- [Smart Pointers & Searching](#smart-pointers--searching)
 - [Tree Structure](#tree-structure)
-- [The Eight Queen’s Problem](#the-eight-queen's-problram)
+- [The Eight Queen’s Problem](#the-eight-queens-problem)
 - [Hash Table](#hash-table)
-- [Graphs & Graphs Algorithms](#graphs-&-graphs-algorithms)
+- [Graphs & Graphs Algorithms](#graphs--graphs-algorithms)
 
 ---
 
