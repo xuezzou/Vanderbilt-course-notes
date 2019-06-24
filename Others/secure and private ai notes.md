@@ -6,7 +6,7 @@
 ---
 #### Secure and Private AI
 
-##### Lesson 3: Introducing **Differential Privacy**
+#### Lesson 3: Introducing **Differential Privacy**
 - scientists are restricted to access personal training data because of *privacy* issues
 - Differential Privacy
     - *Privacy* is preserved if after the analysis, the analyzer doesn't know anything about the people in the dataset. They remain "*unobserved*".
@@ -17,13 +17,13 @@
     - De-anonymize strategies exist
 - A query which doesn't change no matter who we remove from the database
 
-##### Lesson 4: Evaluating The Privacy of A Function
+#### Lesson 4: Evaluating The Privacy of A Function
 - **Sensitivity**: The max amount that the query changes when removing an individual from the database
     - example: computing by sum, mean, threshold
 - Differencing Attack
     - e.g. sum: query the sum of the entire database - the sum or the database w/o the person
 
-##### Lesson 5: Introducing Local and Global Differential Privacy
+#### Lesson 5: Introducing Local and Global Differential Privacy
 - add random noise into the database
     - *Local Differential Privacy*: Add noise to function data points(function inputs)
         - most protected, each individual add noise before sending it to database
@@ -90,7 +90,7 @@
     - number of entries
     - accuracy of the output
     
-##### Differential Privacy for Deep Learning
+#### Differential Privacy for Deep Learning
 - **Perfect Privacy** (AI Model)
     - training a model on a dataset should return the same model even if we remove any person from the training set
 - Two points of complexity
@@ -122,7 +122,7 @@
         - The Moment's Accountant
         - Differentially Private Stochastic Gradient Descent
 
-##### Federated Learning
+#### Federated Learning
 - **Federated Learning**: A technique for training machine learning models on data to which you do not have access (proposed by Google)
     - context of mobile phone typing 
         - when texting training on local but upload model to the cloud 
@@ -136,7 +136,7 @@
     - **PySyft** 
         - generally coding the same way as pytorch but send model and data to the virtual worker (small change)
         - send model to the data, do normal training get smarter model back
-        - reverse the , model sent and model that got back
+        <!-- - reverse the , model sent and model that got back -->
     - train on multiple models
         - average of other models
         - won't know which model do the changes
@@ -152,7 +152,7 @@
     x.move(bob) # move back to bob directly
     ```
 
-##### Secure Federated Learning
+#### Secure Federated Learning
 - **trusted aggregator**
     - send gradience to a trusted third party
 <!-- ```python3
@@ -199,7 +199,7 @@ for a_iter in range(iterations):
 - Additive Secret Sharing
     - Allows multiple individuals to add numbers together without any person learning anyone else's inputs to the addition
     - 5 = Bob(2) + Alice(3)
-- Intro to Fixed Precision Encoding - more secure supporting floating points
+- Fixed Precision Encoding - supporting floating points
     - lean on pysyft 
         ```python3
         x = x.share(bob, alice, secure_worker) # nesting
@@ -224,7 +224,7 @@ z = add(x,y)
 decode(decrypt(z)) # return 7.8
 ``` -->
 
-##### Encrypted Deep Learning
+#### Encrypted Deep Learning
 - native way
     - subtraction with modulo
 - decode positive or negative decimal numbers using divide Q into half
@@ -239,7 +239,7 @@ decode(decrypt(z)) # return 7.8
         - comparison also returns floating points 1. 0. ...
 - able to slice the tensor the same way
 - Project: Build an **Encrypted Database**
-    - hint: store the strings as one-hot encoder or indexes-based
+    - hint: store the strings as one-hot encoder or index-based
 <!--     ```python3
     def string2values(str_input, max_len=8):
 
@@ -340,6 +340,7 @@ decode(decrypt(z)) # return 7.8
     ``` -->
 - Encrypted Deep Learning in PyTorch
     - bring the whole model together without knowing each other
+        - one may own data, one own the model
 <!--     ```python3
     encrypted_model = model.fix_precision().share(alice, bob, crypto_provider=secure_worker)
 
