@@ -1,0 +1,84 @@
+#### nlp学习笔记
+- Tutorials
+    - [有关tensorflow HKUST的课件](https://drive.google.com/drive/u/0/folders/0B41Zbb4c8HVyY1F5Ml94Z2hodkE)
+    - [Some examples](https://github.com/aymericdamien/TensorFlow-Examples)
+
+- Tensorflow-gpu
+    - `nvidia-smi` 查看显卡状况
+    - Cuda cudnn安装
+        + 问题
+            + 安装的cpu版本tensorflow的版本号比gpu版本的高导致无法调用显卡
+    - 用 `pip3 install xxxx -i ...` 安装外源python包
+    - `os.environ["CUDA_VISIBLE_DEVICES"]` 调用显卡
+        - `tf-device` 对tensorflow的Graph进行分类
+- word2vec
+    - [文章一](http://brightliao.me/2016/12/02/dl-workshop-rnn-and-lstm/)
+    - [文章二](https://blog.csdn.net/qq_34941023/article/details/78434057)
+    - 总结
+        - CBOW & Skip Gram Model
+        - 判断词语语义的相似，距离相近向量，意义相似
+        - 切词/分词工具获得词汇表
+        - 分词后的句子在word2vec模型里生成若干个样本
+        - 如cbow模型，选取窗口长度为5，即前两个词和后两个词去预测中间那个词
+            - 输入应该是四个词的词向量，通过模型计算，得到一个长度为vocab_size的softmax后的向量，用以预测是哪个词
+        - embedding matrix 每一行对应单词的词向量
+        - 词 -> 词汇表id --- embedding matrix ---> 词向量
+        - 把词嵌入一个线性空间里面
+        - 训练过程（未标注的数据，如未标注情绪）保留了训练语料的自然语言信息        
+- 分类任务 [textCNN](https://github.com/norybaby/sentiment_analysis_textcnn)
+    - convolution + pooling + activation
+    - [基础入门文章](https://campoo.cc/cnn/)
+    - 词向量可以预加载word2vec训练，也可以直接随机初始化
+    - 随机初始化需要更多的训练次数保证模型的收敛
+    - CNN
+        - [一些细节](https://blog.csdn.net/accumulate_zhang/article/details/78504637)
+        - [细节](https://bbs.dian.org.cn/topic/136/textcnn%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB%E8%AF%A6%E8%A7%A3-%E4%BD%BF%E7%94%A8tensorflow%E4%B8%80%E6%AD%A5%E6%AD%A5%E5%B8%A6%E4%BD%A0%E5%AE%9E%E7%8E%B0%E7%AE%80%E5%8D%95textcnn/2)
+        - [细节](https://towardsdatascience.com/understanding-how-convolutional-neural-network-cnn-perform-text-classification-with-word-d2ee64b9dd0b)
+- **预训练**
+    - 用word2vec预先训练好的词向量放到分类任务中，提高模型的能力
+    - 远古时期（2013-2016年）的有 **word2vec** **fasttext** **glove**
+    - 近一两年有 **elmo** **bert** **gpt**
+        - *contextual embedding* 把上下文的信息通过attention机制进行嵌入
+    - NLP与深度学习的主要链接点 在于嵌入模型(embedding model)的提出
+        - 先把字/词嵌入到线性空间里，再通过神经网络前馈计算得到结果
+    - **hyperparameters**
+        - embedding_dim < num_filters 卷积核的隐含层单元数，一般越多会在网络中传递更多的信息
+            - 太大导致过度拟合
+- [RNN模型](https://github.com/hzy46/Char-RNN-TensorFlow)
+    - RNN相对于Feed-forward Neural Networks
+        - 一个序列当前的输出与前面的输出也有关
+        - 具体的表现形式为网络会对前面的信息进行记忆并应用于当前输出的计算中
+        - 隐藏层之间的节点不再无连接而是有连接
+    - 过度拟合
+    - 训练效果不理想-神经元不够拟合-增加词向量和lstm的维度
+
+- stanford 公开课 cs224n Deep Learning with NLP
+    - [b站 2019](https://www.bilibili.com/video/av49023359/)
+    - [百度云](https://pan.baidu.com/s/1pJyrXaF#list/path=%2F)
+
+---
+
+- **Transformer**神经网络结构
+    - 两个预训练模型
+        - [OpenAI: GPT](https://s3-us-west-2.amazonaws.com/openai-assets/research-covers/language-unsupervised/language_understanding_paper.pdf)
+            - **semi-supervised** by generative pre-training of a language model on a diverse corpus of unlabeled text, followed by discriminative fine-tuning on each specific task. 
+            - not bidirectional (wrod2vec not contextual)
+            - **ELMO** bidirectional (not deep) not transformer
+        - [Google: BERT](https://github.com/google-research/bert)
+            - Bidirectional Encoder Representation from Transformers
+            - unsupervised 
+            - bidirectional and contextual
+            - pre-training + fine-tuning
+    - **如何使用非标注的自然语言文本去预训练一个嵌入+特征提取的语言模型**
+        - 如何把数据转换成模型需要的形式
+        - 如何通过模型去训练（ground truth和loss)
+        - 然后如何用模型去预测（预测的结果反处理成自然语言文本/图像）
+    - GPT的主要作用是代替RNN做文本生成，BERT用来特征提取
+    - [ERNIE: 百度的BERT](https://github.com/PaddlePaddle/LARK/tree/develop/ERNIE)
+
+- 其他相关知识 
+    - [Gradient Accumulation & DataParrelel](https://medium.com/huggingface/training-larger-batches-practical-tips-on-1-gpu-multi-gpu-distributed-setups-ec88c3e51255)
+    - [Improvement on BERT](http://web.stanford.edu/class/cs224n/reports/default/15791990.pdf)
+    - [bert + AoA](https://github.com/songyouwei/ABSA-PyTorch/blob/master/models/aoa.py)
+    - [gpt2 文本生成](https://transformer.huggingface.co)
+    - [XLNet](https://github.com/zihangdai/xlnet)
