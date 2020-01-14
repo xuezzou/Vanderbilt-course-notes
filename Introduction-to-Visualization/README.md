@@ -1,5 +1,5 @@
 ### Introduction to Visualization Course Notes
-> Vanderbilt University Fall 2019, taught by Professor *Mattew Berger*
+> Vanderbilt University Fall 2018, taught by Professor *Mattew Berger*
 > 
 > Transcribed by *Xue Zou*
 

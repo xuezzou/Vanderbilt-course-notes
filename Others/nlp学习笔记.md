@@ -76,7 +76,7 @@
     - GPT的主要作用是代替RNN做文本生成，BERT用来特征提取
     - [ERNIE: 百度的BERT](https://github.com/PaddlePaddle/LARK/tree/develop/ERNIE)
 
-- 其他相关知识 
+- 其他有关知识 
     - [Gradient Accumulation & DataParrelel](https://medium.com/huggingface/training-larger-batches-practical-tips-on-1-gpu-multi-gpu-distributed-setups-ec88c3e51255)
     - [Improvement on BERT](http://web.stanford.edu/class/cs224n/reports/default/15791990.pdf)
     - [bert + AoA](https://github.com/songyouwei/ABSA-PyTorch/blob/master/models/aoa.py)
